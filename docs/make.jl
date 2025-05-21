@@ -6,6 +6,7 @@ makedocs(;
         repo = "github.com/divital-coder/Div-Brewery",
         devbranch = "main",
         devurl = "dev",
+        deploy_url = "https://divital-coder.github.io/Div-Brewery/",
         inventory_version = "v1.0", # Add this line
     ),
     warnonly = true,

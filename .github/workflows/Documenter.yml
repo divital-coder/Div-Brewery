@@ -1,9 +1,10 @@
-name: Build and Deploy
+name: Documenter
 
 on:
   push:
     branches:
       - main
+    tags: ['*']
   pull_request:
   workflow_dispatch:
 
@@ -12,6 +13,10 @@ permissions:
   pages: write
   id-token: write
   statuses: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -25,22 +30,24 @@ jobs:
         with:
           version: '1.10'
       
-      - name: Install dependencies
-        run: |
-          julia --project=. -e '
-            using Pkg;
-            Pkg.add(["Documenter", "DocumenterVitepress"]);
-            Pkg.instantiate();
-            Pkg.precompile();
-          '
+      - name: Load Julia packages from cache
+        id: julia-cache
+        uses: julia-actions/cache@v2
       
-      - name: Build documentation
-        run: julia --project=. docs/make.jl
+      - name: Build and deploy docs
+        uses: julia-actions/julia-docdeploy@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+          GKSwstype: "100"
+          JULIA_DEBUG: "Documenter"
+          DATADEPS_ALWAYS_ACCEPT: true
       
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: github.event_name != 'pull_request'
-        with:
-          folder: docs/build
-          branch: gh-pages
-          clean: true
+      - name: Save Julia depot cache on cancel or failure
+        id: julia-cache-save
+        if: cancelled() || failure()
+        uses: actions/cache/save@v4
+        with: 
+          path: |
+            ${{ steps.julia-cache.outputs.cache-paths }}
+          key: ${{ steps.julia-cache.outputs.cache-key }}
