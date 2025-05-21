@@ -8,7 +8,7 @@ hero:
   text: "Machine Learning Engineer"
   tagline: "Scientific Computing Enthusiast exploring the intersection of computational biology, AI alignment, and high-performance-computing"
   image:
-    src: /Divyansh-Goyal.jpg
+    src: /Divyansh_Goyal.jpg
     alt: Divyansh Goyal
   actions:
     - theme: brand
