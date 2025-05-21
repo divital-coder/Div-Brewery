@@ -3,20 +3,25 @@ using Documenter, DocumenterVitepress
 makedocs(;
     sitename="Div-Brewery",
     format=DocumenterVitepress.MarkdownVitepress(
-        repo = "",
+        repo = "github.com/divital-coder/Div-Brewery",
+        devbranch = "main",
         devurl = "dev",
-        deploy_url = "",
     ),
+    warnonly = true,
+    draft = false,
+    source = "src",
+    build= "build",
     pages=[
         "Home" => "index.md",
         "Blogs" => [
             "Exploring VCell for virtual cell modelling" => "blogs/virtual-cell-modelling.md"  
         ]
     ],
-    warnonly = true,
 )
 
-# deploydocs(;
-#     repo="github.com/YourGithubUsername/YourPackage.jl",
-#     push_preview=true,
-# )
+DocumenterVitepress.deploydocs(;
+    repo = "github.com/divital-coder/Div-Brewery", # this must be the full URL!
+    devbranch = "main",
+    push_preview = true,
+)
+

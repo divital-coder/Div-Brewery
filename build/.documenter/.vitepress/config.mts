@@ -35,7 +35,7 @@ const nav = [
 export default defineConfig({
   base: '/',// TODO: replace this in makedocs!
   title: 'Div-Brewery',
-  description: 'Documentation for ',
+  description: 'Documentation for Div-Brewery',
   lastUpdated: true,
   cleanUrls: true,
   outDir: '../1', // This is required for MarkdownVitepress to work correctly...
@@ -98,9 +98,9 @@ export default defineConfig({
  }
 ]
 ,
-    editLink: { pattern: "https:///edit/master/docs/src/:path" },
+    editLink: { pattern: "https://github.com/divital-coder/Div-Brewery/edit/main/docs/src/:path" },
     socialLinks: [
-      { icon: 'github', link: 'https://' }
+      { icon: 'github', link: 'https://github.com/divital-coder/Div-Brewery' }
     ],
     footer: {
       message: 'Made with <a href="https://luxdl.github.io/DocumenterVitepress.jl/dev/" target="_blank"><strong>DocumenterVitepress.jl</strong></a><br>',

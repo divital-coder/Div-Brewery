@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.CCZvcHlP.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"projects/hpc.md","filePath":"projects/hpc.md","lastUpdated":1747813382000}'),c={name:"projects/hpc.md"};function r(o,s,p,n,d,_){return a(),t("div")}const f=e(c,[["render",r]]);export{m as __pageData,f as default};
