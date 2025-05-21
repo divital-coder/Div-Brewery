@@ -1,10 +1,9 @@
-name: Documenter
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - main  # Set this to your default branch
-    tags: ['*']
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -14,26 +13,34 @@ permissions:
   id-token: write
   statuses: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Julia
         uses: julia-actions/setup-julia@v1
-      - name: Load Julia packages from cache
-        id: julia-cache
-        uses: julia-actions/cache@v2
-      - name: Build and deploy docs
-        uses: julia-actions/julia-docdeploy@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
-          GKSwstype: "100"
-          JULIA_DEBUG: "Documenter"
-          DATADEPS_ALWAYS_ACCEPT: true
+        with:
+          version: '1.10'
+      
+      - name: Install dependencies
+        run: |
+          julia --project=. -e '
+            using Pkg;
+            Pkg.add(["Documenter", "DocumenterVitepress"]);
+            Pkg.instantiate();
+            Pkg.precompile();
+          '
+      
+      - name: Build documentation
+        run: julia --project=. make.jl
+      
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: github.event_name != 'pull_request'
+        with:
+          folder: build
+          branch: gh-pages
+          clean: true

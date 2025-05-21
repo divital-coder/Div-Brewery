@@ -1,7 +1,7 @@
-name = "Div-Brewery"
+name = "DivBrewery"
 uuid = "c4fc6f48-d5fe-4c0a-b5c2-f42335862371"
 authors = ["Divyansh Goyal <divital2004@gmail.com>"]
-version = "0.0.1"
+version = "1.0.0"
 
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"

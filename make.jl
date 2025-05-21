@@ -6,6 +6,7 @@ makedocs(;
         repo = "github.com/divital-coder/Div-Brewery",
         devbranch = "main",
         devurl = "dev",
+        inventory_version = "v1.0", # Add this line
     ),
     warnonly = true,
     draft = false,
@@ -20,8 +21,7 @@ makedocs(;
 )
 
 DocumenterVitepress.deploydocs(;
-    repo = "github.com/divital-coder/Div-Brewery", # this must be the full URL!
+    repo = "github.com/divital-coder/Div-Brewery", 
     devbranch = "main",
     push_preview = true,
 )
-
