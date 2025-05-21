@@ -6,7 +6,7 @@ layout: home
 hero:
   name: "Divyansh Goyal"
   text: "Machine Learning Engineer"
-  tagline: "Scientific Computing Enthusiast exploring the intersection of computational biology, AI alignment, and high-performance-computing"
+  tagline: Scientific Computing Enthusiast exploring the intersection of computational biology, AI alignment, and high-performance-computing
   image:
     src: /Divyansh_Goyal.png
     alt: Divyansh Goyal
