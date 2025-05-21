@@ -35,7 +35,7 @@ jobs:
           '
       
       - name: Build documentation
-        run: julia --project=. make.jl
+        run: julia --project=. docs/make.jl
       
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
